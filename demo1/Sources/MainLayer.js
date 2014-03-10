@@ -1,4 +1,6 @@
+//每次点击连杀数
 var COMBO_KILL_NUM = 0;
+//连杀项
 var KILL_CAL = {
     ZERO: 0,
     DOUBLE: 2,
@@ -6,6 +8,8 @@ var KILL_CAL = {
     ULTRAL: 4,
     PANTA: 5
 };
+//bug的移动速度
+var SPEED = 100;
 
 var MainLayer = function () {
     cc.log("MainLayer");
@@ -120,7 +124,7 @@ MainLayer.prototype.randPoint = function () {
 }
 
 MainLayer.prototype.moveTime = function (p1, p2) {
-    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)) / 100;
+    return Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2)) / SPEED;
 }
 
 MainLayer.prototype.playMusic = function () {
@@ -130,7 +134,7 @@ MainLayer.prototype.playMusic = function () {
 //            cc.AudioEngine.getInstance().playMusic("Resources/sound/ybjc.mp3");
             break;
         case KILL_CAL.DOUBLE:
-            cc.AudioEngine.getInstance().playMusic("Resources/sound/Double_Kill.wav");
+            cc.AudioEngine.getInstance().playEffect("Resources/sound/Double_Kill.wav");
             break;
         case KILL_CAL.TRIBLE:
             cc.AudioEngine.getInstance().playEffect("Resources/sound/triple_kill.wav");
@@ -139,7 +143,7 @@ MainLayer.prototype.playMusic = function () {
             cc.AudioEngine.getInstance().playEffect("Resources/sound/UltraKill.wav");
             break;
         case KILL_CAL.PANTA:
-            cc.AudioEngine.getInstance().playEffect("Resources/sound/MegaKill.wav",false);
+            cc.AudioEngine.getInstance().playEffect("Resources/sound/MegaKill.wav");
             break;
 
 
